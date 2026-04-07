@@ -24,7 +24,7 @@ This project features a ROS 2 based differential-drive robot (Qbot) designed to 
 ---
 
 ## 📷 System Visualization
-*(Place your uploaded Point Cloud image here!)*
+
 ![3D Point Cloud Scan](simulation/image_27941a.png) 
 > *Above: The captured 3D point cloud of the target object visualized in RViz during the autonomous orbiting phase.*
 
@@ -44,7 +44,7 @@ To run this simulation, you need the following installed on an Ubuntu 22.04 syst
 ## 🚀 Build & Installation
 
 1. Clone the repository:
-`git clone `
+`git clone https://github.com/IntellisenseLab/final-project-slam.git`
 cd Qbot--3D-object-mapping/simulation
 
 2. Build the workspace:
