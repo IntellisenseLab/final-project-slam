@@ -72,10 +72,12 @@ Bash
     After exactly 3 complete laps, the robot will safely park itself and terminate movement commands.
 
 ## 📁 Repository Structure
-Plaintext
+```text
 
 Qbot--3D-object-mapping/
 │
+├── media/                       # images and videos of the simulations
+├── weekly_reports/              # weekly reports 
 ├── simulation/                  # Main ROS 2 Workspace
 │   ├── src/
 │   │   └── qbot_scanner/        # Custom Python Package
@@ -88,3 +90,4 @@ Qbot--3D-object-mapping/
 │   └── README.md                # You are here!
 │
 └── .gitignore                   # Keeps the repo clean from b
+```
