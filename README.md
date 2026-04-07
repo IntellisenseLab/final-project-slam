@@ -25,7 +25,7 @@ This project features a ROS 2 based differential-drive robot (Qbot) designed to 
 
 ## 📷 System Visualization
 
-![3D Point Cloud Scan](simulation/image_27941a.png) 
+![Simulation View](media/simulation.png)
 > *Above: The captured 3D point cloud of the target object visualized in RViz during the autonomous orbiting phase.*
 
 ---
