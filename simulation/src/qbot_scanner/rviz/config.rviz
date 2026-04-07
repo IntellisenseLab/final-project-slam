@@ -1,0 +1,37 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Value: true
+    - Class: rviz_default_plugins/RobotModel
+      Description Topic:
+        Value: /robot_description
+      Name: RobotModel
+      Value: true
+    - Class: rviz_default_plugins/LaserScan
+      Topic:
+        Value: /scan
+        Reliability Policy: Best Effort
+      Name: LiDAR Scan
+      Size (m): 0.05
+      Style: Points
+      Color: 255; 0; 0
+      Value: true
+    - Class: rviz_default_plugins/Image
+      Topic:
+        Value: /camera/image
+        Reliability Policy: Best Effort
+      Name: RGB Camera Feed
+      Value: true
+    - Class: rviz_default_plugins/Map
+      Topic:
+        Value: /map
+      Name: 2D SLAM Map
+      Value: true
+      Color Scheme: map
+  Global Options:
+    Fixed Frame: map
