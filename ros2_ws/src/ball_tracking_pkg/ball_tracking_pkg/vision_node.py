@@ -27,17 +27,17 @@ class VisionNode(Node):
         self.publisher_ = self.create_publisher(Point, '/ball_info', 10)
         
         self.bridge = CvBridge()
-        self.target_center_x = 320 # Assuming 640x480 resolution
+        self.target_center_x = 320 
         
         self.latest_depth_frame = None
         
-        # --- PARALLAX OFFSET ---
+        # ----- PARALLAX OFFSET ------
         self.depth_pixel_offset_x = -25
         
-        # --- SMOOTHING AND PERSISTENCE STATE ---
+        # ------- SMOOTHING AND PERSISTENCE STATE -------
         self.last_ball_x = None
         self.last_ball_y = None
-        self.alpha = 0.3  # Smoothing factor (0.1 = slow/smooth, 0.9 = fast/reactive)
+        self.alpha = 0.3  
         
         # Updated logging message
         self.get_logger().info("Vision Node started. Tracking red ball...")
@@ -75,8 +75,7 @@ class VisionNode(Node):
 
         hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         
-        # --- CALIBRATED COLOR RANGE (RED) ---
-        # Red wraps around 0 and 180 in HSV, requiring two ranges combined
+        # ------- COLOUR CALIBRATION -------
         lower_red1 = np.array([0, 100, 100])
         upper_red1 = np.array([10, 255, 255])
         
@@ -92,7 +91,7 @@ class VisionNode(Node):
         ball_detected = False
         curr_x, curr_y = 0, 0
         
-        # --- CALIBRATED VISION LOGIC ---
+        # ----- VISION LOGIC ------
         if contours:
             largest_contour = max(contours, key=cv2.contourArea)
             area = cv2.contourArea(largest_contour)
@@ -109,7 +108,7 @@ class VisionNode(Node):
                             temp_x = int(M["m10"] / M["m00"])
                             temp_y = int(M["m01"] / M["m00"])
                             
-                            # --- JERK REJECTION LOGIC ---
+                            # ----- JERK REJECTION  ------
                             if self.last_ball_x is not None and abs(temp_x - self.last_ball_x) > 150:
                                 ball_detected = False # Ignore this frame, jumped too far
                             else:
@@ -124,7 +123,7 @@ class VisionNode(Node):
 
         msg_out = Point()
         
-        # --- PUBLISHING LOGIC ---
+        # ------- PUBLISHING LOGIC --------
         if ball_detected:
             # 1. APPLY SMOOTHING (EMA)
             if self.last_ball_x is None:
@@ -149,7 +148,7 @@ class VisionNode(Node):
                 msg_out.y = -1.0
                 
         elif self.last_ball_x is not None:
-            # --- SEARCH MEMORY LOGIC ---
+            # ------- SEARCH MEMORY LOGIC ------
             # Ball is lost, but we remember where it was.
             msg_out.x = float(self.target_center_x - self.last_ball_x)
             msg_out.y = -1.0
